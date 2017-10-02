@@ -28,7 +28,7 @@ APP.get('/', function(request, response){
 APP.get('/authorize/', getReddit);
 
 function getReddit (request, response) {
-  console.log(response);
+  console.log(response.body);
   (PROXY ({
     url: `http://reddit.com/reddits.json`
   }))(request, response);}
