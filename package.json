@@ -1,0 +1,25 @@
+{
+  "name": "trendingwords",
+  "version": "1.0.0",
+  "description": "The repository to gather all information on Code Fellows 301 final project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrendingWrds/TrendingWords.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TrendingWrds/TrendingWords/issues"
+  },
+  "homepage": "https://github.com/TrendingWrds/TrendingWords#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "pg": "^7.3.0"
+  }
+}
