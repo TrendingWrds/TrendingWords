@@ -25,12 +25,19 @@ APP.get('/', function(request, response){
   response.sendFile('./index.html');
 });
 
-APP.get('/authorize/', getReddit);
+APP.get('/api/getSubreddits/', getReddit);
 
 function getReddit (request, response) {
-  console.log(response.body);
   (PROXY ({
     url: `http://reddit.com/reddits.json`
+  }))(request, response);}
+
+APP.get('/api/getTitles/:title', getTitles);
+
+function getTitles (request, response) {
+  console.log(request.params.title);
+  (PROXY ({
+    url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
 
 // var settings = {
