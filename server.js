@@ -41,13 +41,15 @@ function getTitles (request, response) {
   }))(request, response);}
 
 // var settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "https://www.reddit.com/reddits.json",
-//   "method": "GET",
-//   "headers": {
-//     "cache-control": "no-cache",
-//     "postman-token": "115e0bf8-5322-f515-7d42-6732c5f3b8ab"
+//   'url': 'https://api.textrazor.com/',
+//   'method': 'POST',
+//   'headers': {
+//     'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
+//     'content-type': 'application/x-www-form-urlencoded',
+//   },
+//   'data': {
+//     'url': 'data/killMeData.json',
+//     'extractors': 'words'
 //   }
 // };
 //
