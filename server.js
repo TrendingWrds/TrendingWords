@@ -8,7 +8,7 @@ const PROXY = require('express-request-proxy');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywords';
+const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywrds';
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);
@@ -35,7 +35,6 @@ function getReddit (request, response) {
 APP.get('/api/getTitles/:title', getTitles);
 
 function getTitles (request, response) {
-  console.log(request.params.title);
   (PROXY ({
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
@@ -71,7 +70,7 @@ APP.post('/API/subredditNames', function(request, response) {
   CLIENT.query(
     `DELETE * FROM subredditNames;`
   ).then(
-    request.body.subredditNamesObject.keys.forEach(function(key) {
+    Object.keys(request.body.subredditNamesObject).forEach(function(key) {
       CLIENT.query(
         `INSERT INTO subredditNames(subredditName)
     VALUES ($1);`,

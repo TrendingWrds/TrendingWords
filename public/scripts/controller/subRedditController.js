@@ -4,6 +4,8 @@ var app = app || {};
 
 (function(module) {
 
-  app.getSubreddits(app.getSubredditTitles('AskReddit'), app.fillTableWithSubredditNames);
+  app.getSubreddits(app.getSubredditTitles, app.fillTableWithSubredditNames);
+
+  app.renderSubreddits();
 
 })(app);

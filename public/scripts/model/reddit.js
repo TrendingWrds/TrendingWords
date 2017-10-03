@@ -9,22 +9,33 @@ var app = app || {};
   let subredditTitles = [];
   let oneBigString = '';
   let searchMe;
+  let testSubredditName = 'AskReddit';
+
+  module.subredditJSON = subredditJSON;
+  module.allSubreddits = allSubreddits;
+  module.titlesJSON = titlesJSON;
+  module.subredditTitles = subredditTitles;
+  module.oneBigString = oneBigString;
+  module.searchMe = searchMe;
+  module.testSubredditName = testSubredditName;
 
   let getSubreddits = function(callback, callback2) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
-        callback();
-        callback2();
+        callback && callback();
+        callback2 && callback2();
       }, err => {
         console.error(err);
       });
   };
 
-  let getSubredditTitles = function(selectedSubreddit) {
-    $.get(`/api/getTitles/${selectedSubreddit}`).then(results => {
+  let getSubredditTitles = function() {
+    console.log('getSubredditTitles is running');
+    $.get(`/api/getTitles/${testSubredditName}`).then(results => {
       titlesJSON = results;
+      console.log(titlesJSON);
       titlesJSON.data.children.forEach(item => {
         subredditTitles.push(item.data.title);
       });
@@ -41,6 +52,7 @@ var app = app || {};
     allSubreddits.forEach(function(subRedditName) {
       let key = subRedditName;
       subredditNamesObject[key] = subRedditName;
+      console.log(subredditNamesObject);
     });
     $.post('/API/subredditNames',
       subredditNamesObject

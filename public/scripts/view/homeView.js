@@ -3,7 +3,7 @@
 var app = app || {};
 
 (function(module) {
-  app.getSubreddits(renderSubreddits);
+  app.getSubreddits(module.renderSubreddits);
 
   let renderSubreddits = function () {
     var render = Handlebars.compile($('#subredditName-template').text());
@@ -11,4 +11,5 @@ var app = app || {};
     $('#subredditListAnchor').append(app.allSubreddits.map(render));
   };
 
+  module.renderSubreddits = renderSubreddits;
 })(app);
