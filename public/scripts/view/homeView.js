@@ -4,6 +4,8 @@ let subredditJSON = [];
 let allSubreddits = [];
 let titlesJSON = [];
 let subredditTitles = [];
+let oneBigString = '';
+let searchMe;
 
 // $.get('/authorize/').then(console.log);
 $.get('/api/getSubreddits/').then(results => {
@@ -19,8 +21,13 @@ $.get('/api/getSubreddits/').then(results => {
     });
   }, err =>{
     // console.error(err);
+  }).then(function(){
+    oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
+    searchMe = JSON.stringify(oneBigString);
   });
 });
+
+
 
 // $.get(`/api/getTitles/${allSubreddits[0]}`).then(results => {
 //   titlesJSON = results;
