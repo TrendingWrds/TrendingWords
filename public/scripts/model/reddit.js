@@ -10,12 +10,13 @@ var app = app || {};
   let oneBigString = '';
   let searchMe;
 
-  let getSubreddits = function(callback) {
+  let getSubreddits = function(callback, callback2) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
         callback();
+        callback2();
       }, err => {
         console.error(err);
       });
@@ -46,8 +47,8 @@ var app = app || {};
     );
   };
 
-  module.fillTableWithSubredditNames = fillTableWithSubredditNames;
   module.getSubreddits = getSubreddits;
   module.getSubredditTitles = getSubredditTitles;
+  module.fillTableWithSubredditNames = fillTableWithSubredditNames;
 
 })(app);
