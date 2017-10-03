@@ -33,20 +33,21 @@ function getReddit (request, response) {
     url: `http://reddit.com/reddits.json`
   }))(request, response);}
 
-var settings = {
-  'url': 'https://api.textrazor.com/',
-  'method': 'POST',
-  'headers': {
-    'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
-    'content-type': 'application/x-www-form-urlencoded',
-  },
-  'data': {
-    'url': 'data/killMeData.json',
-    'extractors': 'words'
-  }
-};
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+// var settings = {
+//   'url': 'https://api.textrazor.com/',
+//   'method': 'POST',
+//   'headers': {
+//     'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
+//     'content-type': 'application/x-www-form-urlencoded',
+//   },
+//   'data': {
+//     'url': 'data/killMeData.json',
+//     'extractors': 'words'
+//   }
+// };
+//
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
 
 APP.listen(PORT);

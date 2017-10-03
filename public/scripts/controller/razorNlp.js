@@ -10,7 +10,7 @@ var settings = {
     'content-type': 'application/x-www-form-urlencoded',
     'cache-control': 'no cache',
     'postman-token': '8b197ff1-8095-0c90-0a61-74feaf5fbc01',
-    'access-control-allow-origin': '*'
+    // 'access-control-allow-origin': '*'
   },
   'data': {
     'text': 'the lazy brown dog jumped over the brown pile of dung',
