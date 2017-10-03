@@ -57,4 +57,28 @@ function getTitles (request, response) {
 //   console.log(response);
 // });
 
+function loadSubredditDB() {
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    subredditNames (
+      subreddit_id SERIAL PRIMARY KEY,
+      subredditName VARCHAR(100) NOT NULL
+    )`
+  );
+}
+
+APP.post('/API/subredditNames', function(request, response) {
+  client.query(
+    `DELETE * FROM subredditNames;`
+  ).then(
+    subredditNamesObject.keys.forEach(function(key) {
+    client.query(
+    `INSERT INTO subredditNames(subredditName)
+    VALUES ($1);`,
+    [
+      request.body.subRedditName[key]
+    ]
+  )}))
+}
+
 APP.listen(PORT);
