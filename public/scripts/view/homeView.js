@@ -26,8 +26,23 @@ $.get('/api/getSubreddits/').then(results => {
     searchMe = JSON.stringify(oneBigString);
   });
 });
+//////////////
+$.post('api/postRazor', (request, response) => {
+  console.log(request.body);
+  // Use searchMe in the TextRazor API to find the words we want.
 
-
+});
+/////////////////
+// ?????????
+// CLIENT.query(`
+//   INSERT INTO pokemon
+//   (data)
+//   VALUES
+//   ($1);
+//   `, [request.body], function(err){
+//     if (err) console.error(err);
+//   })
+// })
 
 // $.get(`/api/getTitles/${allSubreddits[0]}`).then(results => {
 //   titlesJSON = results;
