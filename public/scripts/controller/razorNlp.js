@@ -1,12 +1,15 @@
 'use strict';
+var app = app || {};
 
-$.post('/api/postRazor', {
+(function(module) {
 
-  text: 'This is a potato',
-  extractors: 'words'
-  // 'partOfSpeech': 'NN'
-// }).then(function (res) {
-//   console.log(res);
+let sendSubredditTitles = function () {
+    $.post('/api/postRazor', {
+      text: app.oneBigString,
+      extractors: 'words'
+    }).fail(console.error);
+  };
 
-}).fail(console.error);
+  module.sendSubredditTitles = sendSubredditTitles;
 
+})(app);
