@@ -68,8 +68,9 @@ APP.post('/api/postRazor', function(req, res) {
     .set(headers)
     .send(data)
     // .send('text=This is a potato&extractors=words')
-    .end((err) => {
-      console.log(err);
+    .end((err, response) => {
+      if (err) console.error('anonymous agent function ' + err);
+      console.log(response);
     });
 });
 
