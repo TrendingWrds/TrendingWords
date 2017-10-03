@@ -8,7 +8,7 @@ const PROXY = require('express-request-proxy');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywrds';
+const CON_STRING =  'postgres://localhost:5432/trendingwrds';
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);
@@ -61,26 +61,28 @@ function loadSubredditDB() {
     CREATE TABLE IF NOT EXISTS
     subredditNames (
       subreddit_id SERIAL PRIMARY KEY,
-      subredditName VARCHAR(100) NOT NULL
-    )`
+      subredditName VARCHAR(255) UNIQUE NOT NULL
+    );`
   );
 }
 
+loadSubredditDB();
+
 APP.post('/API/subredditNames', function(request, response) {
-  CLIENT.query(
-    `DELETE * FROM subredditNames;`
-  ).then(
-    Object.keys(request.body.subredditNamesObject).forEach(function(key) {
-      CLIENT.query(
-        `INSERT INTO subredditNames(subredditName)
-    VALUES ($1);`,
-        [
-          request.body.subredditNamesObject[key]
-        ]
-      );
-    }
-    )
+  // CLIENT.query(
+  //   `DELETE * FROM subredditNames;`
+  // ).then(
+  Object.keys(request.body).forEach(function(key) {
+    console.log(key);
+    CLIENT.query(
+      `INSERT INTO subredditNames(subredditName) VALUES ($1);`,
+      [
+        request.body[key]
+      ]
+    );
+  }
   );
+  // );
 });
 
 APP.listen(PORT);
