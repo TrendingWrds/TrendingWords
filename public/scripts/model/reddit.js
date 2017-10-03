@@ -1,3 +1,4 @@
+'use strict';
 
 var app = app || {};
 
@@ -20,8 +21,8 @@ var app = app || {};
       });
   };
 
-  let getSubredditTitles = function() {
-    $.get(`/api/getTitles/${allSubreddits[0]}`).then(results => {
+  let getSubredditTitles = function(selectedSubreddit) {
+    $.get(`/api/getTitles/${selectedSubreddit}`).then(results => {
       titlesJSON = results;
       titlesJSON.data.children.forEach(item => {
         subredditTitles.push(item.data.title);
@@ -33,5 +34,8 @@ var app = app || {};
       searchMe = JSON.stringify(oneBigString);
     });
   };
+
+  module.getSubreddits = getSubreddits;
+  module.getSubredditTitles = getSubredditTitles;
 
 })(app);
