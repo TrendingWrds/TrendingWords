@@ -5,6 +5,7 @@ const EXPRESS = require('express');
 // const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
+const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
@@ -40,21 +41,57 @@ function getTitles (request, response) {
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
 
-// var settings = {
-//   'url': 'https://api.textrazor.com/',
-//   'method': 'POST',
-//   'headers': {
-//     'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
-//     'content-type': 'application/x-www-form-urlencoded',
-//   },
-//   'data': {
-//     'url': 'data/killMeData.json',
-//     'extractors': 'words'
-//   }
-// };
-//
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
 
-APP.listen(PORT);
+var headers = {
+
+  'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
+  'content-type': 'application/x-www-form-urlencoded',
+  'cache-control': 'no-cache',
+};
+
+
+var data =
+  {
+    'text': 'the quick brown fox jumped over the lazy dog',
+    'extractors': 'words'
+  };
+
+
+
+
+APP.post('/api/postRazor', function(req, res) {
+  AGENT.post('https://api.textrazor.com/')
+    // .send({text: `${req.text}`, extractors: `${req.extractors}` })
+    // .set('x-textrazor-key: fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586')
+    // .set('content-type: application/x-www-form-urlencoded')
+    // .set('accept', 'json')
+    .set(headers)
+    .send(data)
+    // .send('text=This is a potato&extractors=words')
+    .end((err, response) => {
+      if (err) console.error('anonymous agent function ' + err);
+      console.log(response);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
