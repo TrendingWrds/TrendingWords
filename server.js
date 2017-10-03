@@ -42,14 +42,55 @@ function getTitles (request, response) {
   }))(request, response);}
 
 
+var headers = {
+
+  'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
+  'content-type': 'application/x-www-form-urlencoded',
+  'cache-control': 'no-cache',
+};
+
+
+var data =
+  {
+    'text': 'the quick brown fox jumped over the lazy dog',
+    'extractors': 'words'
+  };
+
+
+
+
 APP.post('/api/postRazor', function(req, res) {
-  // AGENT.post('api/postRazor');
-  AGENT.send({text: 'This is a potato', extractors: 'words', partOfSpeech: 'NN' });
-  AGENT.set('x-textrazor-key', 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586');
-  AGENT.set('accept', 'text');
-  AGENT.end((err, res) => {
-    console.log(req);
-  });
+  AGENT.post('https://api.textrazor.com/')
+    // .send({text: `${req.text}`, extractors: `${req.extractors}` })
+    // .set('x-textrazor-key: fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586')
+    // .set('content-type: application/x-www-form-urlencoded')
+    // .set('accept', 'json')
+    .set(headers)
+    .send(data)
+    // .send('text=This is a potato&extractors=words')
+    .end((err) => {
+      console.log(err);
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
