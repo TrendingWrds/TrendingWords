@@ -35,6 +35,18 @@ var app = app || {};
     });
   };
 
+  let fillTableWithSubredditNames = function() {
+    let subredditNamesObject = {};
+    allSubreddits.forEach(function(subRedditName) {
+      let key = subRedditName;
+      subredditNamesObject[key] = subRedditName;
+    });
+    $.post('/API/subredditNames',
+      subredditNamesObject
+    );
+  };
+
+  module.fillTableWithSubredditNames = fillTableWithSubredditNames;
   module.getSubreddits = getSubreddits;
   module.getSubredditTitles = getSubredditTitles;
 
