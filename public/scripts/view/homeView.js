@@ -27,11 +27,11 @@ $.get('/api/getSubreddits/').then(results => {
   });
 });
 //////////////
-$.post('api/postRazor', (request, response) => {
-  console.log(request.body);
+// $.post('/api/postRazor', (request, response) => {
+//   console.log(request.body);
   // Use searchMe in the TextRazor API to find the words we want.
 
-});
+// });
 /////////////////
 // ?????????
 // CLIENT.query(`

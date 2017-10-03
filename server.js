@@ -5,6 +5,7 @@ const EXPRESS = require('express');
 // const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
+const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
@@ -40,38 +41,15 @@ function getTitles (request, response) {
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
 
-function postRazor (request, response) {
-  console.log(request.params.title);
-  (PROXY ({
-    'crossDomain': true,
-    'url': 'https://api.textrazor.com/',
-    'method': 'POST',
-    'headers': {
-      'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
-      'content-type': 'application/x-www-form-urlencoded',
-      'cache-control': 'no-cache',
-    },
-    'data': {
-      'text': `${oneBigString}`,
-      'extractors': 'words',
-      'partOfSpeech': 'NN'
-    }
-  }))(request, response);}
-// var settings = {
-//   'url': 'https://api.textrazor.com/',
-//   'method': 'POST',
-//   'headers': {
-//     'x-textrazor-key': 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586',
-//     'content-type': 'application/x-www-form-urlencoded',
-//   },
-//   'data': {
-//     'url': 'data/killMeData.json',
-//     'extractors': 'words'
-//   }
-// };
-//
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
 
-APP.listen(PORT);
+APP.post('/api/postRazor', function(req, res) {
+  // AGENT.post('api/postRazor');
+  AGENT.send({text: 'This is a potato', extractors: 'words', partOfSpeech: 'NN' });
+  AGENT.set('x-textrazor-key', 'fb48909b03e33ac72c8c87bf368d84dd8ac41a3ba4032f4a7a2b4586');
+  AGENT.set('accept', 'text');
+  AGENT.end((err, res) => {
+    console.log(req);
+  });
+});
+
+APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
