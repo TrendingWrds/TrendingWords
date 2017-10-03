@@ -35,6 +35,7 @@ function getReddit (request, response) {
 APP.get('/api/getTitles/:title', getTitles);
 
 function getTitles (request, response) {
+  clearTableRows();
   (PROXY ({
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
@@ -75,7 +76,7 @@ APP.post('/API/subredditNames', function(request, response) {
   Object.keys(request.body).forEach(function(key) {
     console.log(key);
     CLIENT.query(
-      `INSERT INTO subredditNames(subredditName) VALUES ($1);`,
+      `INSERT INTO subredditNames(subredditName) VALUES ($1) ON CONFLICT DO NOTHING;`,
       [
         request.body[key]
       ]
@@ -84,5 +85,11 @@ APP.post('/API/subredditNames', function(request, response) {
   );
   // );
 });
+
+let clearTableRows = function() {
+  CLIENT.query(
+    `DELETE * FROM subredditNames;`
+  );
+};
 
 APP.listen(PORT);

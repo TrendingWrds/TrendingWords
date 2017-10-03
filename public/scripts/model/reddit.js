@@ -19,6 +19,7 @@ var app = app || {};
   module.searchMe = searchMe;
   module.testSubredditName = testSubredditName;
 
+  // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
   let getSubreddits = function(callback, callback2) {
     $.get('/api/getSubreddits/')
       .then(results => {
@@ -31,11 +32,10 @@ var app = app || {};
       });
   };
 
+  // a function that gets all the post titles from a given subreddit
   let getSubredditTitles = function() {
-    console.log('getSubredditTitles is running');
     $.get(`/api/getTitles/${testSubredditName}`).then(results => {
       titlesJSON = results;
-      console.log(titlesJSON);
       titlesJSON.data.children.forEach(item => {
         subredditTitles.push(item.data.title);
       });
@@ -47,18 +47,19 @@ var app = app || {};
     });
   };
 
+  //this function takes the subreddit names from the array and sends back to server side to eventually be added to SQL
   let fillTableWithSubredditNames = function() {
     let subredditNamesObject = {};
     allSubreddits.forEach(function(subRedditName) {
       let key = subRedditName;
       subredditNamesObject[key] = subRedditName;
-      console.log(subredditNamesObject);
     });
     $.post('/API/subredditNames',
       subredditNamesObject
     );
   };
 
+  //adds all the above functions to the module so we can use app to access them
   module.getSubreddits = getSubreddits;
   module.getSubredditTitles = getSubredditTitles;
   module.fillTableWithSubredditNames = fillTableWithSubredditNames;
