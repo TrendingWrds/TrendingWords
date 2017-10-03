@@ -4,10 +4,24 @@
     <meta charset="utf-8">
     <title>trending words</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
+    <!-- handlebars template below for all the subreddit names  -->
+    <script id="subredditName-template" type="text/x-handlebars-template">
+      <li class="clearfix" id="{{subredditName}}">
+        <a href="http://reddit.com/r/{{subredditName}}">Link for {{ subredditName }}</a>
+      </li>
+    </script>
+
   </head>
   <body>
-<h1>Trending Words</h1>
+    <h1>Trending Words</h1>
+
+    <ul id="subredditListAnchor">Top 25 Subreddits!</ul>
+
   </body>
+
+  <script type="text/javascript" src="/scripts/model/reddit.js"></script>
   <script type="text/javascript" src="/scripts/view/homeView.js"></script>
+  <script type="text/javascript" src="/scripts/controller/subRedditController.js"></script>
   <script type="text/javascript" src="/scripts/controller/razorNlp.js"></script>
 </html>

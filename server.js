@@ -2,20 +2,20 @@
 
 
 const EXPRESS = require('express');
-// const PG = require('pg');
+const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
 const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-// const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywords';
+const CON_STRING =  'postgres://localhost:5432/trendingwrds';
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
-// const CLIENT = new PG.Client(CON_STRING);
-// CLIENT.connect();
-//
-// CLIENT.on('error', err => console.error(err));
+const CLIENT = new PG.Client(CON_STRING);
+CLIENT.connect();
+
+CLIENT.on('error', err => console.error(err));
 
 APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({ extended: true }));
@@ -36,11 +36,47 @@ function getReddit (request, response) {
 APP.get('/api/getTitles/:title', getTitles);
 
 function getTitles (request, response) {
-  console.log(request.params.title);
+  clearTableRows();
   (PROXY ({
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
 
+function loadSubredditDB() {
+  CLIENT.query(`
+    CREATE TABLE IF NOT EXISTS
+    subredditNames (
+      subreddit_id SERIAL PRIMARY KEY,
+      subredditName VARCHAR(255) UNIQUE NOT NULL
+    );`
+  );
+}
+
+loadSubredditDB();
+
+APP.post('/API/subredditNames', function(request, response) {
+  // CLIENT.query(
+  //   `DELETE * FROM subredditNames;`
+  // ).then(
+  Object.keys(request.body).forEach(function(key) {
+    console.log(key);
+    CLIENT.query(
+      `INSERT INTO subredditNames(subredditName) VALUES ($1) ON CONFLICT DO NOTHING;`,
+      [
+        request.body[key]
+      ]
+    );
+  }
+  );
+  // );
+});
+
+let clearTableRows = function() {
+  CLIENT.query(
+    `DELETE * FROM subredditNames;`
+  );
+};
+
+APP.listen(PORT);
 
 var headers = {
 
@@ -49,15 +85,11 @@ var headers = {
   'cache-control': 'no-cache',
 };
 
-
 var data =
   {
     'text': 'the quick brown fox jumped over the lazy dog',
     'extractors': 'words'
   };
-
-
-
 
 APP.post('/api/postRazor', function(req, res) {
   AGENT.post('https://api.textrazor.com/')
@@ -74,24 +106,5 @@ APP.post('/api/postRazor', function(req, res) {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
+
