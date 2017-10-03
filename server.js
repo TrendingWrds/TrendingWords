@@ -2,19 +2,19 @@
 
 
 const EXPRESS = require('express');
-// const PG = require('pg');
+const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-// const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywords';
+const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendywords';
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
-// const CLIENT = new PG.Client(CON_STRING);
-// CLIENT.connect();
-//
-// CLIENT.on('error', err => console.error(err));
+const CLIENT = new PG.Client(CON_STRING);
+CLIENT.connect();
+
+CLIENT.on('error', err => console.error(err));
 
 APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({ extended: true }));
@@ -58,7 +58,7 @@ function getTitles (request, response) {
 // });
 
 function loadSubredditDB() {
-  client.query(`
+  CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
     subredditNames (
       subreddit_id SERIAL PRIMARY KEY,
@@ -68,17 +68,20 @@ function loadSubredditDB() {
 }
 
 APP.post('/API/subredditNames', function(request, response) {
-  client.query(
+  CLIENT.query(
     `DELETE * FROM subredditNames;`
   ).then(
-    subredditNamesObject.keys.forEach(function(key) {
-    client.query(
-    `INSERT INTO subredditNames(subredditName)
+    request.body.subredditNamesObject.keys.forEach(function(key) {
+      CLIENT.query(
+        `INSERT INTO subredditNames(subredditName)
     VALUES ($1);`,
-    [
-      request.body.subRedditName[key]
-    ]
-  )}))
-}
+        [
+          request.body.subredditNamesObject[key]
+        ]
+      );
+    }
+    )
+  );
+});
 
 APP.listen(PORT);
