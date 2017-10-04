@@ -115,7 +115,7 @@ var WCHeaders = {
 };
 
 // These code snippets use an open-source library.
-APP.post('/api/postWordCloud', function(request, response){
+APP.post('/api/postWordCloud', function(request, res){
   request.body.width = parseInt(request.body.width);
   request.body.height = parseInt(request.body.height);
   request.body.f_min = parseInt(request.body.f_min);
@@ -124,9 +124,8 @@ APP.post('/api/postWordCloud', function(request, response){
     .send(request.body)
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
-      console.log(response);
-      console.log(request.body);
-      // response.send(response.text);
+      console.log(response.body.url);
+      res.send(response.body.url);
     });
 });
 

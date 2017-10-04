@@ -50,7 +50,7 @@ var app = app || {};
         rotate:'TRUE',
         textblock: app.finalString
       }
-      ).fail(console.error);
+    ).then(console.log).fail(console.error);
     });
 
   };
