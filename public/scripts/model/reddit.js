@@ -3,6 +3,15 @@
 var app = app || {};
 
 (function(module) {
+  function Subreddit (subredditObj) {
+    this.url = subredditObj.url;
+    this.subredditName = subredditObj.subredditName;
+    this.subredditTitle = subredditObj.subredditTitle;
+    this.subredditJSON = subredditObj.subredditJSON;
+  }
+
+Subreddit.allSubreddits = [];
+
   let subredditJSON = [];
   let allSubreddits = [];
   let titlesJSON = [];
