@@ -86,11 +86,11 @@ var headers = {
   'cache-control': 'no-cache',
 };
 
-var data =
-  {
-    'text': 'the quick brown fox jumped over the lazy dog',
-    'extractors': 'words'
-  };
+// var data =
+//   {
+//     'text': 'the quick brown fox jumped over the lazy dog',
+//     'extractors': 'words'
+//   };
 
 APP.post('/api/postRazor', function(req, res) {
   AGENT.post('https://api.textrazor.com/')
@@ -105,6 +105,27 @@ APP.post('/api/postRazor', function(req, res) {
       if (err) console.error('anonymous agent function ' + err);
       console.log(req.body);
       res.send(response.text);
+    });
+});
+
+var WCHeaders = {
+  'X-Mashape-Key': 'N2lDipMwTzmsh2doGsEE4a54hmHWp1eo0KOjsnYEvYtcImOhqs',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+};
+
+// These code snippets use an open-source library.
+APP.post('/api/postWordCloud', function(request, res){
+  request.body.width = parseInt(request.body.width);
+  request.body.height = parseInt(request.body.height);
+  request.body.f_min = parseInt(request.body.f_min);
+  AGENT.post('https://wordcloudservice.p.mashape.com/generate_wc')
+    .set(WCHeaders)
+    .send(request.body)
+    .end((err, response) => {
+      if (err) console.error('anonymous agent function ' + err);
+      console.log(response.body.url);
+      res.send(response.body.url);
     });
 });
 
