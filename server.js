@@ -10,7 +10,7 @@ const AGENT = require('superagent');
 // const REQUEST_LIB = require('request');
 
 const CON_STRING =  'postgres://localhost:5432/trendingwrds';
-const PORT = process.env.PORT || 3000;
+const PORT = 3000 || process.env.PORT;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);
 CLIENT.connect();
@@ -36,7 +36,7 @@ function getReddit (request, response) {
 APP.get('/api/getTitles/:title', getTitles);
 
 function getTitles (request, response) {
-  clearTableRows();
+  // clearTableRows();
   (PROXY ({
     url: `http://reddit.com/r/${request.params.title}/.json`
   }))(request, response);}
@@ -70,13 +70,13 @@ APP.post('/API/subredditNames', function(request, response) {
   // );
 });
 
-let clearTableRows = function() {
-  CLIENT.query(
-    `DELETE * FROM subredditNames;`
-  );
-};
+// let clearTableRows = function() {
+//   CLIENT.query(
+//     `DELETE * FROM subredditNames;`
+//   );
+// };
 
-APP.listen(PORT);
+// APP.listen(PORT);
 
 var headers = {
 
@@ -107,4 +107,3 @@ APP.post('/api/postRazor', function(req, res) {
 });
 
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
-
