@@ -3,17 +3,9 @@
 var app = app || {};
 
 (function(module) {
-  function Subreddit (subredditObj) {
-    this.url = subredditObj.url;
-    this.subredditName = subredditObj.subredditName;
-    this.subredditTitle = subredditObj.subredditTitle;
-    this.subredditJSON = subredditObj.subredditJSON;
-  }
-
-Subreddit.allSubreddits = [];
 
   let subredditJSON = [];
-  let allSubreddits = [];
+  var allSubreddits = [];
   let titlesJSON = [];
   let subredditTitles = [];
   let oneBigString = '';
@@ -21,12 +13,13 @@ Subreddit.allSubreddits = [];
 
 
   // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
-  let getSubreddits = function(callback, callback2, callback3) {
+  let getSubreddits = function(callback, callback2, callback3, callback4) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
         callback && callback(callback2, callback3);
+        callback4()
       }, err => {
         console.error(err);
       });
