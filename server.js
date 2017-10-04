@@ -99,7 +99,7 @@ APP.post('/api/postRazor', function(req, res) {
     // .set('content-type: application/x-www-form-urlencoded')
     // .set('accept', 'json')
     .set(headers)
-    .send(data)
+    .send(req.body)
     // .send('text=This is a potato&extractors=words')
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);

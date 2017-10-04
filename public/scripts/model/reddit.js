@@ -10,12 +10,6 @@ var app = app || {};
   let oneBigString = '';
   let testSubredditName = 'AskReddit';
 
-  module.subredditJSON = subredditJSON;
-  module.allSubreddits = allSubreddits;
-  module.titlesJSON = titlesJSON;
-  module.subredditTitles = subredditTitles;
-  module.oneBigString = oneBigString;
-  module.testSubredditName = testSubredditName;
 
   // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
   let getSubreddits = function(callback, callback2, callback3) {
@@ -40,7 +34,8 @@ var app = app || {};
       // console.error(err);
     }).then(function(){
       oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
-      console.log('getSubredditTitles');
+      app.oneBigString = oneBigString;
+      console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
       callback && callback(callback2);
     });
   };
@@ -62,5 +57,13 @@ var app = app || {};
   module.getSubreddits = getSubreddits;
   module.getSubredditTitles = getSubredditTitles;
   module.fillTableWithSubredditNames = fillTableWithSubredditNames;
+  module.subredditJSON = subredditJSON;
+  module.allSubreddits = allSubreddits;
+  module.titlesJSON = titlesJSON;
+  module.subredditTitles = subredditTitles;
+  module.oneBigString = oneBigString;
+  module.testSubredditName = testSubredditName;
+
+  console.log()
 
 })(app);

@@ -4,7 +4,7 @@ var app = app || {};
 (function(module) {
 
   let sendSubredditTitles = function () {
-    console.log('call within nlp ');
+    console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
       extractors: 'words'
