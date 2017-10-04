@@ -86,11 +86,11 @@ var headers = {
   'cache-control': 'no-cache',
 };
 
-var data =
-  {
-    'text': 'the quick brown fox jumped over the lazy dog',
-    'extractors': 'words'
-  };
+// var data =
+//   {
+//     'text': 'the quick brown fox jumped over the lazy dog',
+//     'extractors': 'words'
+//   };
 
 APP.post('/api/postRazor', function(req, res) {
   AGENT.post('https://api.textrazor.com/')
@@ -114,15 +114,20 @@ var WCHeaders = {
   'Accept': 'application/json'
 };
 
-
 // These code snippets use an open-source library.
-APP.post('api/postWordCloud', function(request, response){
+APP.post('/api/postWordCloud', function(request, response){
+  request.body.width = parseInt(request.body.width);
+  request.body.height = parseInt(request.body.height);
+  request.body.f_min = parseInt(request.body.f_min);
   AGENT.post('https://wordcloudservice.p.mashape.com/generate_wc')
-    .set(headers)
-    .send({'f_type':'png','width':800,'height':500,'s_max':'7','s_min':'1','f_min':1,'r_color':'TRUE','r_order':'TRUE','s_fit':'FALSE','fixed_asp':'TRUE','rotate':'TRUE','textblock':'generate word cloud generate word cloud awesome great png jpg pdf awesome generate word cloud'})
-.end(function (result) {
-  console.log(result.status, result.headers, result.body);
-});
+    .set(WCHeaders)
+    .send(request.body)
+    .end((err, response) => {
+      if (err) console.error('anonymous agent function ' + err);
+      console.log(response);
+      console.log(request.body);
+      // response.send(response.text);
+    });
 });
 
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
