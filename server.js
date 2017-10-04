@@ -67,6 +67,7 @@ APP.post('/API/subredditNames', function(request, response) {
     );
   }
   );
+  response.send('inserted');
   // );
 });
 
@@ -102,7 +103,7 @@ APP.post('/api/postRazor', function(req, res) {
     // .send('text=This is a potato&extractors=words')
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
-      console.log(response);
+      console.log(req.body);
       res.send(response.text);
     });
 });
