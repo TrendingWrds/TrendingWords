@@ -3,21 +3,23 @@
 var app = app || {};
 
 (function(module) {
+  const homeView = {};
+  homeView.newArray = [];
 
-  let renderSubreddits = function () {
+  homeView.renderSubreddits = function () {
     // TODO: turn above into an array of objects of all the subjects so we can run handlebars on it.
-    let newArray = [];
+    console.log(app.allSubreddits);
     for (var i = 0; i < app.allSubreddits.length; i++) {
-      newArray.push({
+      homeView.newArray.push({
         key: 'subredditName',
         value: [i]
       });
     }
     let render = Handlebars.compile($('#subredditName-template').text());
-    $('#subredditListAnchor').append(newArray.map(render));
+    $('#subredditListAnchor').append(homeView.newArray.map(render));
   };
 
-  module.renderSubreddits = renderSubreddits;
+  module.homeView = homeView;
 })(app);
 
 
