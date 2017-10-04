@@ -8,9 +8,11 @@
 
     <!-- handlebars template below for all the subreddit names  -->
     <script id="subredditName-template" type="text/x-handlebars-template">
-      <li class="clearfix" id="{{subredditName}}">
-        <a href="http://reddit.com/r/{{subredditName}}">Link for {{ subredditName }}</a>
+      {{#each keys}}
+      <li class="clearfix" id="{{this}}">
+        <a href="http://reddit.com/r/{{this}}">Link for {{this}}</a>
       </li>
+      {{/each}}
     </script>
 
   </head>
@@ -19,7 +21,7 @@
       <nav>
         <ul>
           <li>Home</li>
-          <li>About us</li>
+          <li>About Us</li>
         </ul>
       </nav>
   </header>

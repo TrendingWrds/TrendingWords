@@ -3,8 +3,9 @@
 var app = app || {};
 
 (function(module) {
+
   let subredditJSON = [];
-  let allSubreddits = [];
+  var allSubreddits = [];
   let titlesJSON = [];
   let subredditTitles = [];
   let oneBigString = '';
@@ -12,19 +13,19 @@ var app = app || {};
 
 
   // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
-  let getSubreddits = function(callback, callback2, callback3) {
+  let getSubreddits = function(callback, callback2, callback3, callback4) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
-        callback && callback(callback2, callback3);
+        callback && callback(callback2, callback3, callback4);
       }, err => {
         console.error(err);
       });
   };
 
   // a function that gets all the post titles from a given subreddit
-  let getSubredditTitles = function(callback, callback2) {
+  let getSubredditTitles = function(callback, callback2, callback3) {
     $.get(`/api/getTitles/${testSubredditName}`).then(results => {
       titlesJSON = results;
       titlesJSON.data.children.forEach(item => {
@@ -36,12 +37,12 @@ var app = app || {};
       oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
       app.oneBigString = oneBigString;
       console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
-      callback && callback(callback2);
+      callback && callback(callback2, callback3);
     });
   };
 
   //this function takes the subreddit names from the array and sends back to server side to eventually be added to SQL
-  let fillTableWithSubredditNames = function(callback) {
+  let fillTableWithSubredditNames = function(callback, callback2) {
     console.log('fillTableWithSubredditNames');
     let subredditNamesObject = {};
     allSubreddits.forEach(function(subRedditName) {
@@ -50,8 +51,9 @@ var app = app || {};
     });
     $.post('/API/subredditNames',
       subredditNamesObject
-    ).then(() => callback && callback(), console.error);
+    ).then(() => callback && callback(callback2), console.error);
   };
+
 
   //adds all the above functions to the module so we can use app to access them
   module.getSubreddits = getSubreddits;
@@ -63,7 +65,5 @@ var app = app || {};
   module.subredditTitles = subredditTitles;
   module.oneBigString = oneBigString;
   module.testSubredditName = testSubredditName;
-
-  console.log()
 
 })(app);

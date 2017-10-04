@@ -5,7 +5,7 @@ var app = app || {};
 
   let nlpResults = '';
 
-  let sendSubredditTitles = function () {
+  let sendSubredditTitles = function (callback) {
     console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
@@ -15,6 +15,8 @@ var app = app || {};
     .then(function(response){
       app.nlpResults = response;
       let obj = JSON.parse(app.nlpResults);
+      let words = obj.response.sentences[0].words;
+      app.words = words;
       let sentenceTotals = [];
       let articleTitles = obj.response.sentences;
       articleTitles.forEach(function(title){
@@ -52,7 +54,7 @@ var app = app || {};
       }
     ).then(console.log).fail(console.error);
     });
-
+   callback();
   };
 
 

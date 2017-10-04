@@ -3,13 +3,9 @@
 var app = app || {};
 
 (function(module) {
-
   let renderSubreddits = function () {
-    let allSubredditsObjects = {};
-    // TODO: turn above into an array of objects of all the subjects so we can run handlebars on it.
-
-    let render = Handlebars.compile($('#subredditName-template').text());
-    $('#subredditListAnchor').append(app.allSubreddits.map(render));
+    let render = Handlebars.compile($('#subredditName-template').html());
+    $('#subredditListAnchor').append(render({keys: app.allSubreddits}));
   };
 
   module.renderSubreddits = renderSubreddits;
