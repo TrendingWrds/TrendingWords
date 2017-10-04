@@ -20,13 +20,14 @@ var app = app || {};
   module.testSubredditName = testSubredditName;
 
   // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
-  let getSubreddits = function(callback, callback2) {
+  let getSubreddits = function(callback, callback2, callback3) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
         callback && callback();
         callback2 && callback2();
+        callback3 && callback3();
       }, err => {
         console.error(err);
       });
