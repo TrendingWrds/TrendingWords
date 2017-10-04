@@ -15,8 +15,14 @@ var app = app || {};
     .then(function(response){
       app.nlpResults = response;
       let obj = JSON.parse(app.nlpResults);
-      let words = obj.response.sentences[0].words;
+      let words = obj.response.sentences;
+      let partOfSpeech = ['FW', 'JJ', 'NN', 'NNP', 'NNS', 'NNPS', 'VB'];
       app.words = words;
+      let filteredWords = words.filter(function(word) {
+        return partOfSpeech.includes(word.partOfSpeech);
+      }
+    );
+      app.filteredWords = filteredWords;
     });
 
   };
