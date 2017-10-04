@@ -9,7 +9,7 @@ const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING =  'postgres://localhost:5432/trendingwrds';
+const CON_STRING =  process.env.DATABASE_URL || 'postgres://localhost:5432/trendingwrds';
 const PORT = 3000 || process.env.PORT;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);
@@ -67,6 +67,7 @@ APP.post('/API/subredditNames', function(request, response) {
     );
   }
   );
+  response.send('inserted');
   // );
 });
 
@@ -98,11 +99,12 @@ APP.post('/api/postRazor', function(req, res) {
     // .set('content-type: application/x-www-form-urlencoded')
     // .set('accept', 'json')
     .set(headers)
-    .send(data)
+    .send(req.body)
     // .send('text=This is a potato&extractors=words')
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
-      console.log(response);
+      console.log(req.body);
+      res.send(response.text);
     });
 });
 
