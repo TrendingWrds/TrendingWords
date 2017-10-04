@@ -9,7 +9,7 @@ const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING =  'postgres://localhost:5432/trendingwrds';
+const CON_STRING =  process.env.DATABASE_URL || 'postgres://localhost:5432/trendingwrds';
 const PORT = 3000 || process.env.PORT;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);
@@ -103,6 +103,7 @@ APP.post('/api/postRazor', function(req, res) {
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
       console.log(response);
+      res.send(response.text);
     });
 });
 
