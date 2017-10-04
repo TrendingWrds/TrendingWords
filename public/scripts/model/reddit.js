@@ -18,8 +18,7 @@ var app = app || {};
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
-        callback && callback(callback2, callback3);
-        callback4()
+        callback && callback(callback2, callback3, callback4);
       }, err => {
         console.error(err);
       });
@@ -65,7 +64,5 @@ var app = app || {};
   module.subredditTitles = subredditTitles;
   module.oneBigString = oneBigString;
   module.testSubredditName = testSubredditName;
-
-  console.log()
 
 })(app);
