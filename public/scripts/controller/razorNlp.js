@@ -15,14 +15,27 @@ var app = app || {};
     .then(function(response){
       app.nlpResults = response;
       let obj = JSON.parse(app.nlpResults);
-      let words = obj.response.sentences;
+      let sentenceTotals = [];
+      let articleTitles = obj.response.sentences;
+      articleTitles.forEach(function(title){
+        sentenceTotals = sentenceTotals.concat(title.words);
+      });
+      app.sentenceTotals = sentenceTotals;
       let partOfSpeech = ['FW', 'JJ', 'NN', 'NNP', 'NNS', 'NNPS', 'VB'];
-      app.words = words;
-      let filteredWords = words.filter(function(word) {
+      let filteredWords = sentenceTotals.filter(function(word) {
         return partOfSpeech.includes(word.partOfSpeech);
       }
     );
       app.filteredWords = filteredWords;
+      let wordTokens = filteredWords.map(function(word) {
+        return word.token;
+      });
+      let finalString = '';
+      app.wordTokens = wordTokens;
+      wordTokens.forEach(function(word) {
+        finalString += (word + ' ');
+      });
+      app.finalString = finalString;
     });
 
   };
