@@ -108,4 +108,21 @@ APP.post('/api/postRazor', function(req, res) {
     });
 });
 
+var WCHeaders = {
+  'X-Mashape-Key': 'N2lDipMwTzmsh2doGsEE4a54hmHWp1eo0KOjsnYEvYtcImOhqs',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+};
+
+
+// These code snippets use an open-source library.
+APP.post('api/postWordCloud', function(request, response){
+  AGENT.post('https://wordcloudservice.p.mashape.com/generate_wc')
+    .set(headers)
+    .send({'f_type':'png','width':800,'height':500,'s_max':'7','s_min':'1','f_min':1,'r_color':'TRUE','r_order':'TRUE','s_fit':'FALSE','fixed_asp':'TRUE','rotate':'TRUE','textblock':'generate word cloud generate word cloud awesome great png jpg pdf awesome generate word cloud'})
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
+});
+
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
