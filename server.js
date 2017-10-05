@@ -9,7 +9,8 @@ const AGENT = require('superagent');
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING =  process.env.DATABASE_URL || 'postgres://localhost:5432/trendingwrds';
+const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendingwrds';
+
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 const CLIENT = new PG.Client(CON_STRING);

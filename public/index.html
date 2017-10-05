@@ -11,9 +11,11 @@
     <!-- handlebars template below for all the subreddit names  -->
     <script id="subredditName-template" type="text/x-handlebars-template">
       {{#each keys}}
+
       <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
         <p>{{this}}</p>
-        <a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+        <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+
       </li>
       {{/each}}
     </script>

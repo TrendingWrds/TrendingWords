@@ -5,7 +5,7 @@ var app = app || {};
 
   let nlpResults = '';
 
-  let sendSubredditTitles = function (callback) {
+  let sendSubredditTitles = function () {
     console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
@@ -54,7 +54,6 @@ var app = app || {};
       }
     ).then(console.log).fail(console.error);
     });
-    callback();
   };
 
 

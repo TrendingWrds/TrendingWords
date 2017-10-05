@@ -13,20 +13,20 @@ var app = app || {};
 
 
   // function that takes 2 callbacks to avoid async issues that will grab all the top 25 subreddit names and push into the allSubreddit array
-  let getSubreddits = function(callback, callback2, callback3, callback4) {
+  let getSubreddits = function(callback, callback2, callback3) {
     $.get('/api/getSubreddits/')
       .then(results => {
         subredditJSON = results;
         subredditJSON.data.children.forEach(item => allSubreddits.push(item.data.display_name));
-        callback && callback(callback2, callback3, callback4);
+        callback && callback(callback2, callback3);
       }, err => {
         console.error(err);
       });
   };
 
   // a function that gets all the post titles from a given subreddit
-  let getSubredditTitles = function(callback, callback2, callback3) {
-    $.get(`/api/getTitles/${testSubredditName}`).then(results => {
+  let getSubredditTitles = function(callback, destination) {
+    $.get(`/api/getTitles/${destination}`).then(results => {
       titlesJSON = results;
       titlesJSON.data.children.forEach(item => {
         subredditTitles.push(item.data.title);
@@ -36,8 +36,8 @@ var app = app || {};
     }).then(function(){
       oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
       app.oneBigString = oneBigString;
-      // console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
-      callback && callback(callback2, callback3);
+      console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
+      callback && callback();
     });
   };
 
