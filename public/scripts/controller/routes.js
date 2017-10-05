@@ -2,5 +2,7 @@
 
 var app = app || {};
 
-page('/', FunctionIpsum);
-page('/about', FunctionIpsum);
+page('/', app.showMain);
+page('/about', app.showAbout);
+
+page();

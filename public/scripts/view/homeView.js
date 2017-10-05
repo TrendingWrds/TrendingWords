@@ -3,6 +3,10 @@
 var app = app || {};
 
 (function(module) {
+  let showMain = function () {
+    $('#main').show();
+    $('#aboutUs').hide();
+  };
 
   let renderSubreddits = function (callback) {
 
@@ -20,7 +24,8 @@ var app = app || {};
     app.subredditDestination = this.id;
     app.getSubredditTitles(app.sendSubredditTitles, app.subredditDestination, app.initResultsPage);
   });};
-
+  
+  module.showMain = showMain;
   module.renderSubreddits = renderSubreddits;
   module.addListeners = addListeners;
 })(app);
