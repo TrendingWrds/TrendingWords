@@ -1,14 +1,27 @@
 
 .landingTitle {
   display: inline-block;
-  margin: 10%;
+  padding: 5%;
+  width: 100%
+}
+
+.landingTitle p {
+  width: 70%;
+  margin: 0%;
+}
+
+.landingTitle div p {
+  width: 70%;
+  margin: 0%;
 }
 
 .fa-reddit-alien {
   display: inline;
   color: #65d2b3;
   float: right;
-  vertical-align: text-top;
+  vertical-align: middle;
+  font-size: 5em;
+  line-height: inherit;
 }
 
 #subtitle {
