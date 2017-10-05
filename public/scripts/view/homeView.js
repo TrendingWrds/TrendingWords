@@ -10,7 +10,8 @@ var app = app || {};
   };
 
   let addListeners = function (){$('li.subreddit').on('click', function(){
-    console.log( $(this).text() );
+    console.log( $(this) );
+    app.subredditDestination = this.id;
   });};
 
   module.renderSubreddits = renderSubreddits;
