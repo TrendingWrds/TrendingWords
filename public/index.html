@@ -5,53 +5,68 @@
     <title>trending words</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+    <link href="https://use.fontawesome.com/043440fbe3.css" media="all" rel="stylesheet">
     <!-- <link rel="shortcut icon" href=".ico"> link for favicon -->
 
     <!-- handlebars template below for all the subreddit names  -->
     <script id="subredditName-template" type="text/x-handlebars-template">
-      {{#each keys}}
 
-      <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
-        <p class="subredditName" id="{{this}}">{{this}}</p>
-        <a href="http://reddit.com/r/{{this}}" target="_blank">Link to Subreddit: {{this}}</a>
+        {{#each keys}}
+            <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
+              <p class="title is-4 subredditName" id="{{this}}">{{this}}</p>
+                <span class="subtitle is-4">Click for Data on {{this}} </span><br><a target="_blank" href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+            </li>
+        {{/each}}
 
-      </li>
-      {{/each}}
     </script>
+    <link rel="stylesheet" href="/styles/navBar.css" type="text/css">
+    <link rel="stylesheet" href="/styles/main.css" type="text/css">
+    <link rel="stylesheet" href="/styles/subredditsList.css" type="text/css">
+    <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
   </head>
   <body>
   <header>
-      <nav>
+      <nav class="navbar is-transparent">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
+          <li class="is-pulled-left navbar-item"><a href="/">Home</a></li>
+          <li class="is-pulled-right navbar-item"><a href="/about">About Us</a></li>
         </ul>
       </nav>
   </header>
-    <section id='main'>
-      <h1>Trending Words</h1>
-      <div class="app-motto">
-        <p>find out what people are saying now on the internet's front page</p>
-      </div>
-      <div class="directions">
-      <h2>choose your subreddit to return top trending words</h2>
-      </div>
+ <section id='main'>
+  <div class="landingTitle">
+    <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+    <p class="title is-1 is-spaced">Trending Words</p>
+    <div class="app-motto subtitle is-3">
+      <p class="subtitle is-5" id="subtitle">find out what people are saying now on the internet's front page</p>
+    </div>
+  </div>
 
-      <form class="subreddit-search" action="index.html" method="post">
-        <input type="text" name="searchbar" placeholder="Search available Subreddits" class="searchbar">
-        <input type="submit" name="" value="Search">
-      </form>
+    <div class="directions">
+      <p>Pick a subreddit listed below and we will run all the top post titles through a Natural Language Processor to analyze what are the most important words. Just for you. Free of charge. A word cloud will be rendered. Use the information wisely. Use it for good.</p>
+    </div>
 
-      <div class="subreddit-lists">
-        <ul id="subredditListAnchor">Top 25 Subreddits!</ul>
+    <form class="subreddit-search container is-fullhd" action="index.html" method="post">
+      <div class="control">
+        <input class="input is-medium" type="text" name="searchbar" placeholder="Search available Subreddits" class="searchbar">
+        <input type="submit" name="" value="Search" class="button is-primary">
       </div>
-      <div class="wordCloudResult">
+    </form>
 
-      </div>
-    </section>
-    <section id='aboutUs'>
+    <div class="subreddit-lists">
+      <p class="title is-3">Top 25 Subreddits!</p>
+      <ul id="subredditListAnchor"></ul>
+    </div>
+   <div class="wordCloudResult"></div>
+
+<div class="clearfix"></div>
+
+</section>
+
+<section id='aboutUs'>
       <div class="teamMemberBio">
         <img src="/assets/pics/Mike.jpg" alt="">
         <h3>Michael Shinners</h3>
@@ -120,6 +135,7 @@
         </div>
       </div>
     </section>
+
 <footer>&copy; 2017 TrendingWords</footer>
   </body>
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
