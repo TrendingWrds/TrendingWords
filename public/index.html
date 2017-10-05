@@ -5,46 +5,52 @@
     <title>trending words</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
     <!-- <link rel="shortcut icon" href=".ico"> link for favicon -->
 
     <!-- handlebars template below for all the subreddit names  -->
     <script id="subredditName-template" type="text/x-handlebars-template">
-      {{#each keys}}
 
-      <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
-        <p>{{this}}</p>
-        <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+        {{#each keys}}
+            <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
+              <p>{{this}}</p>
+                <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+            </li>
+        {{/each}}
 
-      </li>
-      {{/each}}
     </script>
     <link rel="stylesheet" href="/styles/navBar.css" type="text/css">
     <link rel="stylesheet" href="/styles/main.css" type="text/css">
     <link rel="stylesheet" href="/styles/subredditsList.css" type="text/css">
     <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
   </head>
   <body>
   <header>
-      <nav>
+      <nav class="navbar is-transparent">
         <ul>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/aboutUs.html">About Us</a></li>
+          <li class="is-pulled-left navbar-item"><a href="/index.html">Home</a></li>
+          <li class="is-pulled-right navbar-item"><a href="/aboutUs.html">About Us</a></li>
         </ul>
       </nav>
   </header>
-    <h1>Trending Words</h1>
-    <div class="app-motto">
-      <p>find out what people are saying now on the internet's front page</p>
+  <div class="landingTitle container is-fullhd">
+    <p class="title is-1 is-spaced">Trending Words</p>
+    <div class="app-motto class="subtitle is-3"">
+      <p class="subtitle is-5">find out what people are saying now on the internet's front page</p>
     </div>
+  </div>
+
     <div class="directions">
-    <h2>choose your subreddit to return top trending words</h2>
+      <p>choose your subreddit to return top trending words:</p>
     </div>
 
-    <form class="subreddit-search" action="index.html" method="post">
-      <input type="text" name="searchbar" placeholder="Search available Subreddits" class="searchbar">
-      <input type="submit" name="" value="Search">
+    <form class="subreddit-search container is-fullhd" action="index.html" method="post">
+      <div class="control">
+        <input class="input is-medium" type="text" name="searchbar" placeholder="Search available Subreddits" class="searchbar">
+        <input type="submit" name="" value="Search" class="button is-primary">
+      </div>
     </form>
 
     <div class="subreddit-lists">
