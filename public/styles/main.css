@@ -26,6 +26,7 @@
 
 #subtitle {
   font-style: italic;
+  line-height: 1.5em;
 }
 
 .subreddit-search {
@@ -35,4 +36,8 @@
 
 .directions {
   margin: 5% 5% 1% 5%;
+}
+
+.directions p {
+  line-height: 2em;
 }
