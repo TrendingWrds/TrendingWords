@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Arimo', sans-serif;
+}
+
+.clearfix {
+  float: none;
+}
+
+header nav ul {
+  height: 3%;
+}
+
+header nav ul li {
+  list-style: none;
+}
+
+header nav ul li a {
+  text-decoration: none;
+}
