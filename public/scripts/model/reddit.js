@@ -36,14 +36,13 @@ var app = app || {};
     }).then(function(){
       oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
       app.oneBigString = oneBigString;
-      console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
+      // console.log('getSubredditTitles, oneBigString is ' + app.oneBigString);
       callback && callback(callback2, callback3);
     });
   };
 
   //this function takes the subreddit names from the array and sends back to server side to eventually be added to SQL
   let fillTableWithSubredditNames = function(callback, callback2) {
-    console.log('fillTableWithSubredditNames');
     let subredditNamesObject = {};
     allSubreddits.forEach(function(subRedditName) {
       let key = subRedditName;
