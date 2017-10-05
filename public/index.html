@@ -6,11 +6,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
 
+    <!-- <link rel="shortcut icon" href=".ico"> link for favicon -->
+
     <!-- handlebars template below for all the subreddit names  -->
     <script id="subredditName-template" type="text/x-handlebars-template">
       {{#each keys}}
-      <li class="clearfix subreddit" id="{{this}}">
-        <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link for {{this}}</a>
+
+      <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
+        <p>{{this}}</p>
+        <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+
       </li>
       {{/each}}
     </script>
@@ -20,8 +25,8 @@
   <header>
       <nav>
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/aboutUs.html">About Us</a></li>
         </ul>
       </nav>
   </header>
@@ -32,6 +37,12 @@
     <div class="directions">
     <h2>choose your subreddit to return top trending words</h2>
     </div>
+
+    <form class="subreddit-search" action="index.html" method="post">
+      <input type="text" name="searchbar" placeholder="Search available Subreddits" class="searchbar">
+      <input type="submit" name="" value="Search">
+    </form>
+
     <div class="subreddit-lists">
       <ul id="subredditListAnchor">Top 25 Subreddits!</ul>
     </div>
@@ -41,6 +52,7 @@
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <script type="text/javascript" src="/scripts/model/reddit.js"></script>
   <script type="text/javascript" src="/scripts/view/homeView.js"></script>
+  <script type="text/javascript" src="/scripts/view/searchbarView.js"></script>
   <script type="text/javascript" src="/scripts/controller/razorNlp.js"></script>
   <script type="text/javascript" src="/scripts/controller/subRedditController.js"></script>
 </html>

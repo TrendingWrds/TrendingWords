@@ -3,7 +3,13 @@
 var app = app || {};
 
 (function(module) {
+
   let renderSubreddits = function (callback) {
+
+  Handlebars.registerHelper('makeAllCaps', function(text) {
+    return text.toUpperCase();
+  });
+    
     let render = Handlebars.compile($('#subredditName-template').html());
     $('#subredditListAnchor').append(render({keys: app.allSubreddits}));
     callback && callback();

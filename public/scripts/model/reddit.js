@@ -43,7 +43,6 @@ var app = app || {};
 
   //this function takes the subreddit names from the array and sends back to server side to eventually be added to SQL
   let fillTableWithSubredditNames = function(callback, callback2) {
-    console.log('fillTableWithSubredditNames');
     let subredditNamesObject = {};
     allSubreddits.forEach(function(subRedditName) {
       let key = subRedditName;
