@@ -13,8 +13,8 @@
       {{#each keys}}
 
       <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
-        <p>{{this}}</p>
-        <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+        <p class="subredditName" id="{{this}}">{{this}}</p>
+        <a href="http://reddit.com/r/{{this}}" target="_blank">Link to Subreddit: {{this}}</a>
 
       </li>
       {{/each}}
