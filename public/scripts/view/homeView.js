@@ -12,6 +12,7 @@ var app = app || {};
   let addListeners = function (){$('li.subreddit').on('click', function(){
     console.log( $(this) );
     app.subredditDestination = this.id;
+    app.getSubredditTitles(app.sendSubredditTitles, app.subredditDestination);
   });};
 
   module.renderSubreddits = renderSubreddits;
