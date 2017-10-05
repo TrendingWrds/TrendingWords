@@ -20,7 +20,7 @@ To get started point your phone's or computer's browser to the site(https://tren
 
 ## Authors
 
-* David A. Lindhal, Michael Shinners, Max A. Wolff, and Marco Zangari.
+* David A. Lindahl, Michael Shinners, Max A. Wolff, and Marco Zangari.
 
 ## License
 
