@@ -5,7 +5,7 @@ var app = app || {};
 
   let nlpResults = '';
 
-  let sendSubredditTitles = function () {
+  let sendSubredditTitles = function (callback) {
     console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
@@ -52,7 +52,11 @@ var app = app || {};
         rotate:'TRUE',
         textblock: app.finalString
       }
-    ).then(console.log).fail(console.error);
+    ).then(function(response) {
+      console.log(response);
+      app.wordCloudLink = response;
+      callback && callback();
+    }).fail(console.error);
     });
   };
 

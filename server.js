@@ -129,5 +129,8 @@ APP.post('/api/postWordCloud', function(request, res){
       res.send(response.body.url);
     });
 });
+APP.get('*', (request, response) => {
+  response.sendFile('index.html', {root: './public'});
+});
 
 APP.listen(PORT, () => console.log(`server started on port ${PORT}!`));
