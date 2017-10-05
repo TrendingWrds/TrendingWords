@@ -18,17 +18,3 @@ header nav ul li {
 header nav ul li a {
   text-decoration: none;
 }
-
-.landingTitle {
-  display: inline-block;
-  margin: 10%;
-}
-
-.subreddit-search {
-  text-align: center;
-  margin: 2% 5% 5% 5%;
-}
-
-.directions {
-  margin: 5% 5% 1% 5%;
-}

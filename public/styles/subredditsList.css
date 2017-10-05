@@ -1,0 +1,21 @@
+
+.subreddit-lists p {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+
+.subredditNameLi {
+  width: 45%;
+  padding: 2%;
+  text-align: center;
+  float: right;
+  display: inline-block;
+  border: thin solid black;
+  border-radius: 25px;
+  margin: 2% 2% 2% 2%;
+  min-width: 10%;
+  max-width: 45%;
+  min-height: 5%;
+  max-height: 10%;
+}

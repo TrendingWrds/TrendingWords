@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+    <link href="https://use.fontawesome.com/043440fbe3.css" media="all" rel="stylesheet">
     <!-- <link rel="shortcut icon" href=".ico"> link for favicon -->
 
     <!-- handlebars template below for all the subreddit names  -->
@@ -13,8 +14,8 @@
 
         {{#each keys}}
             <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
-              <p>{{this}}</p>
-                <span>Click for Data on {{this}} </span><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+              <p class="title is-4">{{this}}</p>
+                <span class="subtitle is-4">Click for Data on {{this}} </span><br><a href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
             </li>
         {{/each}}
 
@@ -37,13 +38,14 @@
   </header>
   <div class="landingTitle container is-fullhd">
     <p class="title is-1 is-spaced">Trending Words</p>
+    <i class="fa fa-4x fa-reddit-alien" aria-hidden="true"></i>
     <div class="app-motto class="subtitle is-3"">
-      <p class="subtitle is-5">find out what people are saying now on the internet's front page</p>
+      <p class="subtitle is-5" id="subtitle">find out what people are saying now on the internet's front page</p>
     </div>
   </div>
 
     <div class="directions">
-      <p>choose your subreddit to return top trending words:</p>
+      <p>Pick a subreddit listed below and we will run all the top post titles through a Natural Language Processor to analyze what are the most important words. Just for you. Free of charge. A word cloud will be rendered. Use the information wisely. Use it for good.</p>
     </div>
 
     <form class="subreddit-search container is-fullhd" action="index.html" method="post">
@@ -54,8 +56,11 @@
     </form>
 
     <div class="subreddit-lists">
-      <ul id="subredditListAnchor">Top 25 Subreddits!</ul>
+      <p class="title is-3">Top 25 Subreddits!</p>
+      <ul id="subredditListAnchor"></ul>
     </div>
+
+<div class="clearfix"></div>
 
 <footer>&copy; 2017 TrendingWords</footer>
   </body>

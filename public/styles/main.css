@@ -1,0 +1,25 @@
+
+.landingTitle {
+  display: inline-block;
+  margin: 10%;
+}
+
+.fa-reddit-alien {
+  display: inline;
+  color: #65d2b3;
+  float: right;
+  vertical-align: text-top;
+}
+
+#subtitle {
+  font-style: italic;
+}
+
+.subreddit-search {
+  text-align: center;
+  margin: 2% 5% 5% 5%;
+}
+
+.directions {
+  margin: 5% 5% 1% 5%;
+}
