@@ -37,22 +37,22 @@ var app = app || {};
       wordTokens.forEach(function(word) {
         finalString += (word + ' ');
       });
-    //   app.finalString = finalString;
-    //   $.post('/api/postWordCloud', {
-    //     f_type:'png',
-    //     width:800,
-    //     height:500,
-    //     s_max:'7',
-    //     s_min:'1',
-    //     f_min:1,
-    //     r_color:'TRUE',
-    //     r_order:'TRUE',
-    //     s_fit:'FALSE',
-    //     fixed_asp:'TRUE',
-    //     rotate:'TRUE',
-    //     textblock: app.finalString
-    //   }
-    // ).then(console.log).fail(console.error);
+      app.finalString = finalString;
+      $.post('/api/postWordCloud', {
+        f_type:'png',
+        width:800,
+        height:500,
+        s_max:'7',
+        s_min:'1',
+        f_min:1,
+        r_color:'TRUE',
+        r_order:'TRUE',
+        s_fit:'FALSE',
+        fixed_asp:'TRUE',
+        rotate:'TRUE',
+        textblock: app.finalString
+      }
+    ).then(console.log).fail(console.error);
     });
     callback();
   };
