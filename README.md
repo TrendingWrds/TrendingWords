@@ -15,8 +15,8 @@ To get started point your phone's or computer's browser to the site(https://tren
 * [body-parser, 1.18.2](https://github.com/expressjs/body-parser) - Middleware to parse incoming request bodies
 * [express, 4.16.1](http://expressjs.com/) - Web framework for node.js
 * [express-request-proxy, 2.0.0](https://github.com/4front/express-request-proxy) - Middleware for Express with support for custom routes, caching, and response transforms
-* [node-postgres, aka pg, 7.3.0](https://node-postgres.com/) - PostgreSQL client for node.js
-* [superagent, 3.6.2](https://github.com/visionmedia/superagent) - Ajax Request API
+* [node-postgres, aka pg), 7.3.0](https://node-postgres.com/) - PostgreSQL client for node.js
+* [superagent), 3.6.2](https://github.com/visionmedia/superagent) - Ajax Request API
 
 ## Authors
 
