@@ -33,41 +33,44 @@ var app = app || {};
         return word.token;
       });
 
-      // $.get('/api/badwords').then(results => {
-      //   app.badwords = results;
-      //   console.log('this is our array of bad words ' + app.badwords);
-      // });
-      //
-      // wordTokens.filter(function(word) {
-      //   return !(app.badwords.includes(word));
-      // });
+      $.get('/api/badwords').then(results => {
+        app.badwords = results;
+        // console.log('this is our array of bad words ' + app.badwords);
+        console.log(wordTokens);
+        let notBadWords = wordTokens.filter(function(word) {
+          return !(app.badwords.includes(word));
+        });
+        console.log(notBadWords);
 
-      let finalString = '';
-      app.wordTokens = wordTokens;
-      wordTokens.forEach(function(word) {
-        finalString += (word + ' ');
+        let finalString = '';
+        app.wordTokens = wordTokens;
+        notBadWords.forEach(function(word) {
+          finalString += (word + ' ');
+        });
+        console.log(finalString);
+        app.finalString = finalString;
+        $.post('/api/postWordCloud', {
+          f_type:'png',
+          width:800,
+          height:500,
+          s_max:'7',
+          s_min:'1',
+          f_min:1,
+          r_color:'TRUE',
+          r_order:'TRUE',
+          s_fit:'FALSE',
+          fixed_asp:'TRUE',
+          rotate:'TRUE',
+          textblock: app.finalString
+        }
+      ).then(function(response) {
+        console.log(response);
+        app.wordCloudLink = response;
+        callback && callback();
+      }).fail(console.error);
       });
-      app.finalString = finalString;
-      $.post('/api/postWordCloud', {
-        f_type:'png',
-        width:800,
-        height:500,
-        s_max:'7',
-        s_min:'1',
-        f_min:1,
-        r_color:'TRUE',
-        r_order:'TRUE',
-        s_fit:'FALSE',
-        fixed_asp:'TRUE',
-        rotate:'TRUE',
-        textblock: app.finalString
-      }
-    ).then(function(response) {
-      console.log(response);
-      app.wordCloudLink = response;
-      callback && callback();
-    }).fail(console.error);
     });
+
   };
 
 
