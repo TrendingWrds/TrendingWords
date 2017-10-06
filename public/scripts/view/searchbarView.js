@@ -2,6 +2,7 @@
 
 var app = app || {};
 
+
 (function(module) {
   let $searchbar = $('.searchbar');
   $searchbar.on('keyup', function() {
