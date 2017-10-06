@@ -33,12 +33,9 @@ var app = app || {};
       });
       $.get('/api/badwords').then(results => {
         app.badwords = results;
-        // console.log('this is our array of bad words ' + app.badwords);
-        console.log(wordTokens);
         let notBadWords = wordTokens.filter(function(word) {
           return !(app.badwords.includes(word));
         });
-        console.log(notBadWords);
 
 
         let finalString = '';
@@ -46,7 +43,6 @@ var app = app || {};
         notBadWords.forEach(function(word) {
           finalString += (word + ' ');
         });
-        console.log('test to see if everything works ' + finalString);
         app.finalString = finalString;
         $.post('/api/postWordCloud', {
           f_type:'png',
@@ -63,7 +59,6 @@ var app = app || {};
           textblock: app.finalString
         }
       ).then(function(response) {
-        console.log(response);
         app.wordCloudLink = response;
         callback && callback();
       }).fail(console.error);
