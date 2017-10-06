@@ -6,7 +6,6 @@
 }
 
 .subredditNameLi {
-  width: 45%;
   padding: 2%;
   text-align: center;
   float: left;
@@ -14,16 +13,28 @@
   border: thin solid black;
   border-radius: 25px;
   margin: 2% 2% 2% 2%;
-  min-width: 10%;
-  max-width: 45%;
-  min-height: 5%;
-  max-height: 10%;
+  width: 80%;
+}
+
+@media only screen and (min-width: 600px) {
+  .subredditNameLi {
+    width: 45%;
+  }
+}
+
+.subredditNameLi a {
+  text-decoration: none;
+  color: black;
 }
 
 .subredditNameLi:hover {
   background: #65d2b3;
 }
 
-.subredditNameLi p:hover {
+.subredditNameLi p:hover, a:hover {
   color: white;
+}
+
+.center {
+  margin: 0% 10% 0% 10%;
 }

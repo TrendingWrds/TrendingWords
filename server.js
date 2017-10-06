@@ -12,7 +12,7 @@ let array = LIST.array;
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
-const CON_STRING = `${process.env.DATABASE_URL}` || 'postgres://localhost:5432/trendingwrds';
+const CON_STRING = process.env.DATABASE_URL || 'postgres://localhost:5432/trendingwrds';
 
 const PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
@@ -65,7 +65,6 @@ APP.post('/API/subredditNames', function(request, response) {
   //   `DELETE * FROM subredditNames;`
   // ).then(
   Object.keys(request.body).forEach(function(key) {
-    console.log(key);
     CLIENT.query(
       `INSERT INTO subredditNames(subredditName) VALUES ($1) ON CONFLICT DO NOTHING;`,
       [
@@ -110,7 +109,6 @@ APP.post('/api/postRazor', function(req, res) {
     // .send('text=This is a potato&extractors=words')
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
-      console.log(req.body);
       res.send(response.text);
     });
 });
@@ -131,7 +129,6 @@ APP.post('/api/postWordCloud', function(request, res){
     .send(request.body)
     .end((err, response) => {
       if (err) console.error('anonymous agent function ' + err);
-      console.log(response.body.url);
       res.send(response.body.url);
     });
 });
