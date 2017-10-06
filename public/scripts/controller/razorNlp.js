@@ -6,7 +6,6 @@ var app = app || {};
   let nlpResults = '';
 
   let sendSubredditTitles = function (callback) {
-    console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
       extractors: 'words'
@@ -63,7 +62,6 @@ var app = app || {};
         textblock: app.finalString
       }
     ).then(function(response) {
-      console.log(response);
       app.wordCloudLink = response;
       callback && callback();
     }).fail(console.error);
