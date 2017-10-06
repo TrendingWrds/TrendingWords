@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>trending words</title>
+    <title>Trending Words of Reddit</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
@@ -26,12 +26,12 @@
     <link rel="stylesheet" href="/styles/subredditsList.css" type="text/css">
     <link rel="stylesheet" href="/styles/footer.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-      <link rel="stylesheet" href="/styles/aboutUs.css" type="text/css">
+    <link rel="stylesheet" href="/styles/aboutUs.css" type="text/css">
 
   </head>
   <body>
   <header>
-      <nav class="navbar is-transparent">
+      <nav class="navbar is-transparent is-mobile">
         <ul>
           <li class="is-pulled-left navbar-item"><a href="/">Home</a></li>
           <li class="is-pulled-right navbar-item"><a href="/about">About Us</a></li>
@@ -41,9 +41,9 @@
  <section id='main'>
   <div class="landingTitle">
     <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-    <p class="title is-1 is-spaced">Trending Words</p>
+    <p class="title is-1 is-spaced">Trending Words of Reddit</p>
     <div class="app-motto subtitle is-3">
-      <p class="subtitle is-5" id="subtitle">find out what people are saying now on the internet's front page</p>
+      <p class="subtitle is-5" id="subtitle">find out what people are saying right now on <span class="emphasis">the internet's front page</span></p>
     </div>
   </div>
 
@@ -58,8 +58,10 @@
     </form>
 
     <div class="subreddit-lists">
-      <p class="title is-3">Top 25 Subreddits!</p>
-      <ul id="subredditListAnchor"></ul>
+      <p class="title is-3">Top 25 Subreddits</p>
+      <div class="center">
+        <ul id="subredditListAnchor"></ul>
+      </div>
     </div>
    <div class="wordCloudResult">
      <ul class="resultUl">
