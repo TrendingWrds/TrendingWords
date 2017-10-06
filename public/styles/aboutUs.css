@@ -1,0 +1,27 @@
+#aboutUs img {
+  border-radius: 90px;
+  height: 10em;
+  float: right;
+}
+
+.teamMemberBio {
+  margin: 5% 0% 5% 0%;
+
+}
+
+.teamMemberBio {
+    line-height: 1.5em;
+    border: thin solid black;
+    border-radius: 25px;
+    min-width: 100px;
+}
+
+.teamMemberBio p {
+  padding: 5%;
+}
+
+.socialMediaBtns {
+  text-align: center;
+  color: #65d2b3;
+  margin: 0% 5% 0% 5%
+}
