@@ -1,7 +1,7 @@
 
 
 /* Desktops and such aka things bigger than phones */
-@media all and (min-width: 768px) {
+/*@media all and (min-width: 768px) {
   .subredditNameLi {
     padding: 2%;
     text-align: center;
@@ -15,4 +15,4 @@
     min-height: 5%;
     max-height: 10%;
   }
-}
+}*/

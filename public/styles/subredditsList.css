@@ -13,11 +13,17 @@
   border: thin solid black;
   border-radius: 25px;
   margin: 2% 2% 2% 2%;
-  min-width: 60%;
-  max-width: 90%;
+  width: 80%;
+  /*min-width: 60%;*/
+  /*max-width: 90%;
   min-height: 5%;
-  max-height: 10%;
+  max-height: 10%;*/
+}
 
+@media only screen and (min-width: 600px) {
+  .subredditNameLi {
+    width: 45%;
+  }
 }
 
 .subredditNameLi a {
@@ -31,4 +37,8 @@
 
 .subredditNameLi p:hover, a:hover {
   color: white;
+}
+
+.center {
+  margin: 0% 10% 0% 10%;
 }
