@@ -62,7 +62,6 @@ var app = app || {};
         textblock: app.finalString
       }
     ).then(function(response) {
-      console.log(response);
       app.wordCloudLink = response;
       callback && callback();
     }).fail(console.error);

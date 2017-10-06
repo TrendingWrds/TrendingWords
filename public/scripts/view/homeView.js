@@ -25,13 +25,14 @@ var app = app || {};
   };
 
   let addListeners = function (){$('.subredditName').on('click', function(){
+
     $('.subreddit-lists').hide();
     $('#main').append('You selected Subreddit: ');
     $('#main').append(this);
     $('.subreddit-search').hide();
     $('.directions').hide();
     $('.fa.fa-reddit-alien').addClass('fa-spin fa-3x fa-fw');
-    console.log(this.id);
+
     app.subredditDestination = this.id;
     app.selectedLi = this.parentElement;
     app.getSubredditTitles(app.sendSubredditTitles, app.subredditDestination, app.initResultsPage);
