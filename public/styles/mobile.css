@@ -1,0 +1,19 @@
+
+
+/* Desktops and such aka things bigger than phones */
+@media all and (min-width: 768px) {
+  .subredditNameLi {
+    width: 45%;
+    padding: 2%;
+    text-align: center;
+    float: left;
+    display: inline-block;
+    border: thin solid black;
+    border-radius: 25px;
+    margin: 2% 2% 2% 2%;
+    min-width: 10%;
+    max-width: 45%;
+    min-height: 5%;
+    max-height: 10%;
+  }
+}
