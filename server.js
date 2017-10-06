@@ -6,6 +6,9 @@ const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
 const AGENT = require('superagent');
+const LIST = require('badwords-list');
+let array = LIST.array;
+
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
@@ -22,6 +25,9 @@ APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({ extended: true }));
 APP.use(EXPRESS.static('./public'));
 
+APP.get('/api/badwords', function(request, response){
+  response.send(array);
+});
 
 APP.get('/', function(request, response){
   response.sendFile('./index.html');

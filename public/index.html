@@ -14,8 +14,9 @@
 
         {{#each keys}}
             <li class="clearfix subredditNameLi" id="{{makeAllCaps this}}">
-              <p class="title is-4 subredditName" id="{{this}}">{{this}}</p>
-                <span class="subtitle is-4">Click for Data on {{this}} </span><br><a target="_blank" href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
+              <p class="title is-4 subredditName" style="cursor: pointer" id="{{this}}">{{this}}</p>
+                <!-- <span class="subtitle is-4">Click for Data on {{this}} </span> -->
+                <br><a target="_blank" href="http://reddit.com/r/{{this}}">Link to Subreddit: {{this}}</a>
             </li>
         {{/each}}
 
@@ -60,7 +61,11 @@
       <p class="title is-3">Top 25 Subreddits!</p>
       <ul id="subredditListAnchor"></ul>
     </div>
-   <div class="wordCloudResult"></div>
+   <div class="wordCloudResult">
+     <ul class="resultUl">
+       
+     </ul>
+   </div>
 
 <div class="clearfix"></div>
 
@@ -134,6 +139,9 @@
           </a>
         </div>
       </div>
+    </section>
+    <section>
+      <p id='imgCredit'>This image was created with the use of Word Cloud API, with data created via Text Razor API, a Natural Language Processor.</p>
     </section>
 
 <footer>&copy; 2017 TrendingWords</footer>
