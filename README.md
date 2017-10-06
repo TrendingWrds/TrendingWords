@@ -1,4 +1,4 @@
-# Project Title
+# Trending Words of Reddit
 
 Trending Words is a mobile-based application built to track the most heavily used Reddit words in a given subthread so that users can quickly keep up fast-changing topics.
 
