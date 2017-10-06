@@ -25,6 +25,9 @@ APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({ extended: true }));
 APP.use(EXPRESS.static('./public'));
 
+APP.get('/api/badwords', function(request, response){
+  response.send(array);
+});
 
 APP.get('/', function(request, response){
   response.sendFile('./index.html');
