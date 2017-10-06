@@ -25,7 +25,6 @@ var app = app || {};
   };
 
   let addListeners = function (){$('.subredditName').on('click', function(){
-    console.log(this.parentElement);
     app.subredditDestination = this.id;
     app.selectedLi = this.parentElement;
     app.getSubredditTitles(app.sendSubredditTitles, app.subredditDestination, app.initResultsPage);
