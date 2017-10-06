@@ -7,7 +7,6 @@ var app = app || {};
     $('.wordCloudResult').empty();
     $('.fa-reddit-alien').removeClass('fa-spin fa-3x fa-fw');
     $('.resultUl').append(app.selectedLi);
-
     let wordCloudImg = $('<img>');
     wordCloudImg.attr('src', app.wordCloudLink);
     $('.wordCloudResult').append(wordCloudImg);
@@ -18,3 +17,6 @@ var app = app || {};
   };
   app.initResultsPage = initResultsPage;
 })(app);
+
+
+//select parent of clicked link to show on results
