@@ -6,7 +6,6 @@ var app = app || {};
   let nlpResults = '';
 
   let sendSubredditTitles = function (callback) {
-    console.log('call within nlp  oneBigString is ' + app.oneBigString);
     $.post('/api/postRazor', {
       text: app.oneBigString,
       extractors: 'words'
@@ -33,14 +32,14 @@ var app = app || {};
         return word.token;
       });
 
-      $.get('/api/badwords').then(results => {
-        app.badwords = results;
-        console.log('this is our array of bad words ' + app.badwords);
-      });
+      // $.get('/api/badwords').then(results => {
+      //   app.badwords = results;
+      //   console.log('this is our array of bad words ' + app.badwords);
+      // });
 
-      wordTokens.filter(function(word) {
-        return !(app.badwords.includes(word));
-      });
+      // wordTokens.filter(function(word) {
+      //   return !(app.badwords.includes(word));
+      // });
 
       let finalString = '';
       app.wordTokens = wordTokens;
