@@ -47,7 +47,7 @@ var app = app || {};
         notBadWords.forEach(function(word) {
           finalString += (word + ' ');
         });
-        console.log(finalString);
+        console.log('test to see if everything works ' + finalString);
         app.finalString = finalString;
         $.post('/api/postWordCloud', {
           f_type:'png',
