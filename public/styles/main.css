@@ -52,6 +52,16 @@ p {
   line-height: 2em;
 }
 
+
+.fullscreen {
+ position: fixed;
+ width: 100%;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+
 .emphasis {
   color: #65d2b3;
+
 }
