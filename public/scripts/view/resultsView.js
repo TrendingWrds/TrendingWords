@@ -8,6 +8,9 @@ var app = app || {};
     $('.subreddit-lists').hide();
     $('.subreddit-search').hide();
     $('.directions').hide();
+    $('#imgCredit').show();
+    $('.resultUl').append(app.selectedLi);
+
     let wordCloudImg = $('<img>');
     wordCloudImg.attr('src', app.wordCloudLink);
     $('.wordCloudResult').append(wordCloudImg);

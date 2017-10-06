@@ -6,6 +6,9 @@ const PG = require('pg');
 const PARSER = require('body-parser');
 const PROXY = require('express-request-proxy');
 const AGENT = require('superagent');
+const LIST = require('badwords-list');
+let array = LIST.array;
+
 // const HTTP = require('http');
 // const REQUEST_LIB = require('request');
 
