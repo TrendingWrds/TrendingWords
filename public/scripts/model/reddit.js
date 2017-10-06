@@ -35,6 +35,7 @@ var app = app || {};
       // console.error(err);
     }).then(function(){
       oneBigString = subredditTitles.reduce(function(acc, cur){return acc.concat(cur) + ' ';});
+      subredditTitles = [];
       app.oneBigString = oneBigString;
       callback && callback(callback2);
     });
